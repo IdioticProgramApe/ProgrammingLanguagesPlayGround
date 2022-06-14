@@ -1,0 +1,7 @@
+*.cache
+**/.vs
+**/bin
+**/obj
+**/target
+**/packages
+
