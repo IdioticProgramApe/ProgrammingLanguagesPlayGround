@@ -2,8 +2,8 @@
 #[derive(Debug)]
 
 // struct declaration
-struct Person {
-    name: String,
+pub struct Person {
+    pub name: String,
     age: i8,
     nationality: String,
     profession: String
@@ -20,7 +20,7 @@ impl Person {
     }
 
     // struct associated function, no self passed in
-    fn create(name: String, age: i8, nationality: String, profession: String) -> Person {
+    pub fn create(name: String, age: i8, nationality: String, profession: String) -> Person {
         Person {name, age, nationality, profession}
     }
 }
@@ -29,7 +29,7 @@ impl Person {
 struct Color(u8, u8, u8);
 struct Point(f64, f64);
 
-fn test_struct() {
+pub fn test_struct() {
     {
         let person_a = Person::create(
             String::from("A"),

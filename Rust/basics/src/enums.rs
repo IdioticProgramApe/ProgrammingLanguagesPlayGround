@@ -7,7 +7,7 @@ enum Transport {
     Boat {speed: f64, field: String}
 }
 
-fn test_enums() {
+pub fn test_enums() {
     let plane = Transport::Plane(1000.0, String::from("air"));
     let vehicle = Transport::Vehicle{speed: 200.0, field: String::from("road")};
     let boat = Transport::Boat{speed: 300.0, field: String::from("ocean")};
