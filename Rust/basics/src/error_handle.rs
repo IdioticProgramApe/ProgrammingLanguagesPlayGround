@@ -17,7 +17,7 @@ pub fn test_panic() {
     println!("unreachable line");
 }
 
-pub fn read_file(filename: String) -> bool {
+pub fn read_file(filename: &str) -> bool {
     let f = File::open(filename);
     return match f {
         Ok(file) => {
@@ -31,9 +31,9 @@ pub fn read_file(filename: String) -> bool {
     };
 }
 
-pub fn read_file_s(filename: String) {
-    let f1 = File::open(filename.clone()).unwrap();
-    let f2 = File::open(filename.clone()).expect("Failed to open");
+pub fn read_file_s(filename: &str) {
+    let f1 = File::open(filename).unwrap();
+    let f2 = File::open(filename).expect("Failed to open");
 }
 
 fn generate_result(i: i32, reference: i32) -> Result<i32, bool> {

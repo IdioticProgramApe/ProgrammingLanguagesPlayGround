@@ -7,6 +7,7 @@ mod structs;
 mod enums;
 mod filesystem;
 mod error_handle;
+mod generics;
 
 use crate::filesystem::subfolder_alpha::file_alpha::self_introduction;
 use crate::filesystem::subfolder_beta::file_beta::self_introduction as beta_introduction;
@@ -41,16 +42,33 @@ fn main() {
 
     // go to error_handle.rs to get more details
     {
-        // error_handle::test_panic();                                              // Crash!
-        error_handle::read_file(String::from("external/hello.txt"));                // OK!
-        error_handle::read_file(String::from("external/not_exist_file.txt"));       // OK!
+        // error_handle::test_panic();                                          // Crash!
+        error_handle::read_file("external/hello.txt");                  // OK!
+        error_handle::read_file("external/not_exist_file.txt");         // OK!
 
-        error_handle::read_file_s(String::from("external/hello.txt"));              // OK!
-        // error_handle::read_file_s(String::from("external/not_exist_file.txt"));  // Crash!
+        error_handle::read_file_s("external/hello.txt");                // OK!
+        // error_handle::read_file_s("external/not_exist_file.txt");            // Crash!
 
         error_handle::test_catch_result(10);
 
         error_handle::test_get_file_content("external/hello.txt");
         error_handle::test_get_file_content("external/not_exist_file.txt");
+    }
+
+    // go to generics.rs to get more details
+    {
+        println!("the max i32 is {}", generics::test_max_i32(&[0, 1, 2, 3, 4]));
+        println!("the max i32 is {}", generics::test_max_i32(&[]));
+
+        let point = generics::Point::create(3.0, 4.0);
+        let origin = generics::Point::create(0.0, 0.0);
+        println!("the point (3, 4)'s x value is {}, and its y value is {}",
+                 point.get_x(), point.get_y());
+        println!("the distance is {}", origin.get_distance(&point));
+
+        let texel1 = generics::Texel{ s: 0, t: 1.0 };
+        let texel2 = generics::Texel{ s: 1.0, t: 0 };
+        let mixed_texel = texel1.mix(texel2);
+        println!("the mixed texel is ({}, {})", mixed_texel.s, mixed_texel.t);
     }
 }
