@@ -20,19 +20,21 @@ pub fn test_max_i32(array: &[i32]) -> i32 {
     }
 }
 
-/** this function doesn't compile because undefined behavior > in type T
- *  fn max<T>(array: &[T]) -> T {
- *      let mut max_index = 0;
- *      let mut i = 1;
- *      while i < array.len() {
- *          if array[i] > array[max_index] {
- *              max_index = i;
- *          }
- *          i += 1;
- *      }
- *      array[max_index]
- *  }
- */
+/// # this function doesn't compile because undefined behavior > in type T
+///
+/// ```
+/// fn max<T>(array: &[T]) -> T {
+///     let mut max_index = 0;
+///     let mut i = 1;
+///     while i < array.len() {
+///         if array[i] > array[max_index] {
+///             max_index = i;
+///         }
+///         i += 1;
+///     }
+///     array[max_index]
+/// }
+/// ```
 
 pub struct Point<T> {
     x: T,

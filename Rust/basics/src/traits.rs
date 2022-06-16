@@ -58,5 +58,10 @@ impl Compare for f64 {
 
 // use trait as return value: the object which implemented the traits
 pub fn person() -> impl Description {
-    Person::create(String::from("E"), 0, String::from("American"), String::from("New Born"))
+    Person::create(
+        String::from("E"),
+        0,
+        String::from("American"),
+        String::from("New Born")
+    )
 }

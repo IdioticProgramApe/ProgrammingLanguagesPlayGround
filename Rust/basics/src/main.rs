@@ -10,11 +10,13 @@ mod error_handle;
 mod generics;
 mod traits;
 mod lifetime;
+mod file_io;
 
+use std::fmt::Display;
 use crate::filesystem::subfolder_alpha::file_alpha::self_introduction;
 use crate::filesystem::subfolder_beta::file_beta::self_introduction as beta_introduction;
 use crate::filesystem::subfolder_beta::get_disk_surface;
-use crate::traits::Description;
+use crate::traits::Description;         // this use is necessary
 
 fn main() {
     // go to structs.rs to get more details
@@ -69,8 +71,8 @@ fn main() {
                  point.get_x(), point.get_y());
         println!("the distance is {}", origin.get_distance(&point));
 
-        let texel1 = generics::Texel{ s: 0, t: 1.0 };
-        let texel2 = generics::Texel{ s: 1.0, t: 0 };
+        let texel1 = generics::Texel { s: 0, t: 1.0 };
+        let texel2 = generics::Texel { s: 1.0, t: 0 };
         let mixed_texel = texel1.mix(texel2);
         println!("the mixed texel is ({}, {})", mixed_texel.s, mixed_texel.t);
     }
@@ -87,12 +89,10 @@ fn main() {
         traits::introduction(&person_d);        // doing the same as the prev line
         traits::generic_introduction(&person_d);
 
-        // some lambda struct
-        struct RandomStruct {}
-        
+        // some lambda struct and
         // use default trait function implementation
-        impl Description for RandomStruct {} 
-
+        struct RandomStruct {}
+        impl Description for RandomStruct {}
         let random_struct = RandomStruct {};
         println!("{}", random_struct.describe());
 
@@ -103,5 +103,28 @@ fn main() {
         }
 
         println!("{}", traits::person().describe());
+    }
+
+    // go to lifetime.rs to get more details
+    {
+        lifetime::test_good_longer_v1();
+        lifetime::test_good_longer_v2();
+        lifetime::test_person_with_lifetime();
+
+        // the reference itself is not static, will be dropped when leaving the scope
+        let static_str: &'static str = "this is a static string";
+
+        // a snippet with generic, trait and lifetime
+        fn some_bizarre_stuff<'a, T>(s1: &'a str, s2: &'a str, p: T) -> bool
+            where T: Display {
+            println!("{}", p);
+            if s1.len() > s2.len() { true } else { false }
+        }
+    }
+
+    // go to file_io.rs to get more details
+    {
+        // try to type `cargo run hello world` in the terminal to see the output
+        file_io::print_args();
     }
 }

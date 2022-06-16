@@ -27,7 +27,8 @@ impl Person {
 
 impl Description for Person {
     fn describe(&self) -> String {
-        format!("name: {}, age: {}, nationality: {}, profession: {}", self.name, self.age, self.nationality, self.profession)
+        format!("name: {}, age: {}, nationality: {}, profession: {}",
+                self.name, self.age, self.nationality, self.profession)
     }
 }
 
