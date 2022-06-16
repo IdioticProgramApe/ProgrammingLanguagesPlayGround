@@ -39,7 +39,8 @@ pub struct Point<T> {
     y: T,
 }
 
-impl<T> Point<T> {
+// only have Clone trait can implement these method
+impl<T: Clone> Point<T> {
     pub fn get_x(&self) -> &T {
         &self.x
     }
@@ -53,6 +54,7 @@ impl<T> Point<T> {
     }
 }
 
+// only implement for one specific type
 impl Point<f64> {
     pub fn get_distance(&self, point: &Point<f64>) -> f64 {
         f64::sqrt((&self.x - &point.x).powi(2) + (&self.y - &point.y).powi(2))

@@ -1,7 +1,7 @@
-// This is a macro needed to pretty print a struct
-#[derive(Debug)]
+use super::traits::Description;
 
 // struct declaration
+#[derive(Debug)]
 pub struct Person {
     pub name: String,
     age: i8,
@@ -22,6 +22,12 @@ impl Person {
     // struct associated function, no self passed in
     pub fn create(name: String, age: i8, nationality: String, profession: String) -> Person {
         Person {name, age, nationality, profession}
+    }
+}
+
+impl Description for Person {
+    fn describe(&self) -> String {
+        format!("name: {}, age: {}, nationality: {}, profession: {}", self.name, self.age, self.nationality, self.profession)
     }
 }
 

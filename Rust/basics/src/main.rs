@@ -8,10 +8,13 @@ mod enums;
 mod filesystem;
 mod error_handle;
 mod generics;
+mod traits;
+mod lifetime;
 
 use crate::filesystem::subfolder_alpha::file_alpha::self_introduction;
 use crate::filesystem::subfolder_beta::file_beta::self_introduction as beta_introduction;
 use crate::filesystem::subfolder_beta::get_disk_surface;
+use crate::traits::Description;
 
 fn main() {
     // go to structs.rs to get more details
@@ -70,5 +73,35 @@ fn main() {
         let texel2 = generics::Texel{ s: 1.0, t: 0 };
         let mixed_texel = texel1.mix(texel2);
         println!("the mixed texel is ({}, {})", mixed_texel.s, mixed_texel.t);
+    }
+
+    // go to traits.rs to get more details
+    {
+        let person_d = structs::Person::create(
+            String::from("D"),
+            70,
+            String::from("Japanese"),
+            String::from("Retired")
+        );
+        println!("{}", person_d.describe());
+        traits::introduction(&person_d);        // doing the same as the prev line
+        traits::generic_introduction(&person_d);
+
+        // some lambda struct
+        struct RandomStruct {}
+        
+        // use default trait function implementation
+        impl Description for RandomStruct {} 
+
+        let random_struct = RandomStruct {};
+        println!("{}", random_struct.describe());
+
+        let max_result = traits::max(&[0.0, 1.0, 2.0, 3.0, 4.0]);
+        match max_result {
+            Ok(v) => println!("the max value is {}", v),
+            _ => println!("we don't care!")
+        }
+
+        println!("{}", traits::person().describe());
     }
 }

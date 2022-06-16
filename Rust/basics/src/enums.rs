@@ -1,5 +1,3 @@
-#[derive(Debug)]
-
 // the enum class is an ensemble of structs
 enum Transport {
     Plane (f64, String),
