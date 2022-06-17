@@ -126,5 +126,24 @@ fn main() {
     {
         // try to type `cargo run hello world` in the terminal to see the output
         file_io::print_args();
+
+        // program stops here, waiting for a input, use `cargo run` to test
+        println!("your input line is: \n{}", file_io::input());
+
+        // the following line will panic, uncomment to see it!
+        // let something_not_exist = file_io::read_file("blabla_something.txt");
+
+        // read a python script from this repo
+        let python_script_path = "../../Python/IO/Asyncio/main.py";
+        println!("this is a python script: \n{}", file_io::read_file(python_script_path));
+        println!("these are some first binaries of python script: \n{:?}", 
+                 file_io::read_file_as_binary("external/hello.txt", 10));
+        file_io::test_read_file_to_buffer(python_script_path);
+
+        // write something to a file
+        file_io::direct_writein("external/temporary.log", "I don't know to to write.\n");
+        file_io::append_string("external/temporary.log", b"again, I really don't know\n").unwrap();
+        file_io::overwrite_with_string("external/temporary.log", b"some random words").unwrap();
+        file_io::write_buffer("external/temporary_frombuffer.log", b"I don't know to to write.\n")
     }
 }
