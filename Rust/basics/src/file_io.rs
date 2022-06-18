@@ -83,6 +83,7 @@ pub fn append_string(filepath: &str, content: &[u8]) -> io::Result<()> {
 }
 
 // overwrite the content without clean them first
+// use ? only when the output is a Result otherwise use unwrap or expect
 pub fn overwrite_with_string(filepath: &str, content: &[u8]) -> io::Result<()> {
     let mut file = OpenOptions::new().read(true).write(true).open(filepath)?;
     file.write(content)?;

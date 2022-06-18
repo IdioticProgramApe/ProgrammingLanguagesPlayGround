@@ -11,6 +11,7 @@ mod generics;
 mod traits;
 mod lifetime;
 mod file_io;
+mod collections;
 
 use std::fmt::Display;
 use crate::filesystem::subfolder_alpha::file_alpha::self_introduction;
@@ -145,5 +146,35 @@ fn main() {
         file_io::append_string("external/temporary.log", b"again, I really don't know\n").unwrap();
         file_io::overwrite_with_string("external/temporary.log", b"some random words").unwrap();
         file_io::write_buffer("external/temporary_frombuffer.log", b"I don't know to to write.\n")
+    }
+
+    // go to collections to get more details
+    {
+        let mut vector = collections::get_vector();
+        collections::print_nth_element(&vector, 5);
+        collections::print_nth_element(&vector, vector.len());
+
+        // add some value to all the elements
+        if !vector.is_empty() {
+            let mut index = 0;
+            for element in &mut vector {
+                *element += index;
+                index += 1;
+            }
+        }
+        println!("the vector now is {:?}", vector);
+
+        let mut s = collections::SomeString::create().concatenate();
+        s.push_str(" blabla");
+        s.push('!');
+
+        // len() and chars().count() is different because of the chinese character
+        // each utf-8 character will have 3 bytes.
+        println!("\"{}\"'s length is {}, has {} characters", s, s.len(), s.chars().count());
+        println!("the 23rd character is {}", s.chars().nth(23).unwrap());
+        println!("the first 20 bytes are \"{}\"", &s[..20]);
+
+        // hashmap
+        collections::test_hashmap();
     }
 }
