@@ -13,6 +13,7 @@ mod lifetime;
 mod file_io;
 mod collections;
 mod oor;
+mod concurrency;
 
 use std::fmt::Display;
 use std::vec;
@@ -185,5 +186,12 @@ fn main() {
         let vector = vec![10, 20, 30, 40, 50];
         let some_instance = oor::SomeClass::new(vector);
         some_instance.public_method();
+
+        oor::test_inheritance();
+    }
+
+    // go to concurrency.rs to get more details
+    {
+        
     }
 }
