@@ -12,8 +12,10 @@ mod traits;
 mod lifetime;
 mod file_io;
 mod collections;
+mod oor;
 
 use std::fmt::Display;
+use std::vec;
 use crate::filesystem::subfolder_alpha::file_alpha::self_introduction;
 use crate::filesystem::subfolder_beta::file_beta::self_introduction as beta_introduction;
 use crate::filesystem::subfolder_beta::get_disk_surface;
@@ -176,5 +178,12 @@ fn main() {
 
         // hashmap
         collections::test_hashmap();
+    }
+
+    // go to oor.rs to get more details
+    {
+        let vector = vec![10, 20, 30, 40, 50];
+        let some_instance = oor::SomeClass::new(vector);
+        some_instance.public_method();
     }
 }
