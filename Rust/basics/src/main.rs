@@ -192,6 +192,11 @@ fn main() {
 
     // go to concurrency.rs to get more details
     {
-        
+        concurrency::test_closure();
+
+        concurrency::test_thread_case_1();
+        concurrency::test_thread_case_2();
+        concurrency::test_thread_case_3();
+        concurrency::test_thread_case_4();
     }
 }
